@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
+export function useInView<T extends HTMLElement>(
+  options?: IntersectionObserverInit,
+  initialInView = false,
+) {
   const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(initialInView);
 
   useEffect(() => {
+    if (initialInView) return;
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") {
       setInView(true);
@@ -22,7 +26,7 @@ export function useInView<T extends HTMLElement>(options?: IntersectionObserverI
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [options]);
+  }, [initialInView, options]);
 
   return { ref, inView };
 }
@@ -31,14 +35,16 @@ export function Reveal({
   children,
   delay = 0,
   className,
+  immediate = false,
   as: As = "div",
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
+  immediate?: boolean;
   as?: "div" | "section" | "li" | "article" | "span";
 }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  const { ref, inView } = useInView<HTMLDivElement>(undefined, immediate);
   return (
     <As
       ref={ref as never}

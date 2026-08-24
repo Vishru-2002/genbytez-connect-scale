@@ -52,9 +52,6 @@ export function CaseStudyCard({
             </div>
           ))}
         </dl>
-        <p className="mt-6 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted-foreground">
-          Sample scenario — replaceable
-        </p>
       </div>
     </article>
   );

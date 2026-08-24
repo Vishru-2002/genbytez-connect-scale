@@ -43,7 +43,10 @@ export function CTASection({
               cy={y}
               r="3.5"
               fill="currentColor"
-              style={{ animation: `gb-pulse ${2.5 + (i % 4) * 0.5}s ease-in-out ${i * 0.25}s infinite`, transformOrigin: `${x}px ${y}px` }}
+              style={{
+                animation: `gb-pulse ${2.5 + (i % 4) * 0.5}s ease-in-out ${i * 0.25}s infinite`,
+                transformOrigin: `${x}px ${y}px`,
+              }}
             />
           </g>
         ))}
@@ -54,7 +57,9 @@ export function CTASection({
           <h2 className="text-3xl font-semibold leading-[1.08] sm:text-5xl">{headline}</h2>
         </Reveal>
         <Reveal delay={100}>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">{text}</p>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {text}
+          </p>
         </Reveal>
         <Reveal delay={180}>
           <div className="mt-10 flex flex-wrap justify-center gap-3">

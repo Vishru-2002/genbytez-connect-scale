@@ -1,22 +1,39 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import { ArchitectureDiagram } from "@/components/site/ArchitectureDiagram";
-import { BlogCard } from "@/components/site/BlogCard";
-import { CTASection } from "@/components/site/CTASection";
-import { CaseStudyCard } from "@/components/site/CaseStudyCard";
-import { FlowCards } from "@/components/site/FlowCards";
+import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import { Hero } from "@/components/site/Hero";
 import { Icon } from "@/components/site/Icon";
-import { IndustryCard } from "@/components/site/IndustryCard";
-import { Metrics } from "@/components/site/Metrics";
-import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { Reveal } from "@/components/site/Reveal";
 import { Section, SectionHeader } from "@/components/site/SectionHeader";
-import { SolutionCard } from "@/components/site/SolutionCard";
-import { TechnologyGrid } from "@/components/site/TechnologyGrid";
-import { TestimonialCarousel } from "@/components/site/TestimonialCarousel";
-import { TrustStrip } from "@/components/site/TrustStrip";
-import { caseStudies, digitalSolutions, industries, insights, solutions, whyGenbytez } from "@/content/site";
+import { caseStudies, digitalSolutions, solutions, whyGenbytez } from "@/content/site";
+
+const CaseStudyCard = lazy(() =>
+  import("@/components/site/CaseStudyCard").then((module) => ({ default: module.CaseStudyCard })),
+);
+const CTASection = lazy(() =>
+  import("@/components/site/CTASection").then((module) => ({ default: module.CTASection })),
+);
+const FlowCards = lazy(() =>
+  import("@/components/site/FlowCards").then((module) => ({ default: module.FlowCards })),
+);
+const Metrics = lazy(() =>
+  import("@/components/site/Metrics").then((module) => ({ default: module.Metrics })),
+);
+const ProcessTimeline = lazy(() =>
+  import("@/components/site/ProcessTimeline").then((module) => ({
+    default: module.ProcessTimeline,
+  })),
+);
+const SolutionCard = lazy(() =>
+  import("@/components/site/SolutionCard").then((module) => ({ default: module.SolutionCard })),
+);
+const TechnologyGrid = lazy(() =>
+  import("@/components/site/TechnologyGrid").then((module) => ({ default: module.TechnologyGrid })),
+);
+const TestimonialCarousel = lazy(() =>
+  import("@/components/site/TestimonialCarousel").then((module) => ({
+    default: module.TestimonialCarousel,
+  })),
+);
 
 const title = "Genbytez | IoT & Digital Solutions Company";
 const description =
@@ -47,33 +64,35 @@ function Home() {
   return (
     <>
       <Hero />
-      <TrustStrip />
-
       <Section>
         <SectionHeader
           eyebrow="Connect → Understand → Automate → Grow"
           title="From Connected Devices to Business Intelligence"
           description="IoT is more than connecting a device. It is about turning real-world data into meaningful business action. Genbytez helps organizations connect physical assets, capture real-time information, analyze what it means, and build the digital experiences teams use every day."
         />
-        <FlowCards />
+        <Suspense fallback={null}>
+          <FlowCards />
+        </Suspense>
       </Section>
 
-      <Section id="solutions" light>
+      <Section id="solutions">
         <SectionHeader
           eyebrow="IoT Solutions"
           title="IoT Solutions Built for the Real World"
           description="From individual connected devices to enterprise-scale IoT ecosystems."
         />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((solution, i) => (
-            <Reveal key={solution.slug} delay={(i % 3) * 90}>
-              <SolutionCard solution={solution} />
-            </Reveal>
-          ))}
+          <Suspense fallback={null}>
+            {solutions.map((solution, i) => (
+              <Reveal key={solution.slug} delay={(i % 3) * 90}>
+                <SolutionCard solution={solution} />
+              </Reveal>
+            ))}
+          </Suspense>
         </div>
       </Section>
 
-      <Section>
+      <Section id="digital-solutions">
         <SectionHeader
           eyebrow="Digital Solutions"
           title="Beyond IoT. Complete Digital Solutions."
@@ -87,46 +106,16 @@ function Home() {
                   <Icon name={item.icon} className="size-5" />
                 </span>
                 <h3 className="mt-6 text-xl font-semibold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
             </Reveal>
           ))}
         </div>
-        <Reveal delay={120}>
-          <Link
-            to="/services"
-            className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-primary"
-          >
-            See all services <ArrowRight className="size-4" />
-          </Link>
-        </Reveal>
       </Section>
 
-      <Section id="stack" className="border-y border-border bg-surface/30">
-        <SectionHeader
-          eyebrow="The Genbytez IoT Stack"
-          title="One Connected Ecosystem"
-          description="Six layers, one architecture — from the sensor on the machine to the decision on the dashboard."
-        />
-        <ArchitectureDiagram />
-      </Section>
-
-      <Section light>
-        <SectionHeader
-          eyebrow="Industries"
-          title="Connected Solutions Across Industries"
-          description="Every environment has different constraints. The architecture adapts; the outcome is always visibility and control."
-        />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {industries.map((industry, i) => (
-            <Reveal key={industry.slug} delay={(i % 5) * 70}>
-              <IndustryCard industry={industry} index={i} />
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
+      <Section id="why-genbytez">
         <SectionHeader
           eyebrow="Why Genbytez"
           title="Why Genbytez?"
@@ -140,43 +129,46 @@ function Home() {
                   <Icon name={item.icon} className="size-5" />
                 </span>
                 <h3 className="mt-6 text-lg font-semibold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
             </Reveal>
           ))}
         </div>
         <div className="mt-16">
-          <Metrics />
+          <Suspense fallback={null}>
+            <Metrics />
+          </Suspense>
         </div>
       </Section>
 
-      <Section className="border-y border-border bg-surface/30">
+      <Section id="case-studies">
         <SectionHeader
           eyebrow="Case Studies"
           title="Turning Real-World Challenges Into Connected Solutions"
           description="Illustrative project scenarios showing how Genbytez approaches connected deployments. Replace with real engagements once published."
         />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.slice(0, 3).map((cs, i) => (
-            <Reveal key={cs.slug} delay={i * 90}>
-              <CaseStudyCard {...cs} />
-            </Reveal>
-          ))}
+          <Suspense fallback={null}>
+            {caseStudies.slice(0, 3).map((cs, i) => (
+              <Reveal key={cs.slug} delay={i * 90}>
+                <CaseStudyCard {...cs} />
+              </Reveal>
+            ))}
+          </Suspense>
         </div>
-        <Reveal delay={140}>
-          <Link to="/case-studies" className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-primary">
-            View all case studies <ArrowRight className="size-4" />
-          </Link>
-        </Reveal>
       </Section>
 
-      <Section light>
+      <Section>
         <SectionHeader
           eyebrow="Process"
           title="From Idea to Impact"
           description="A six-step path from problem definition to a deployed, optimized connected solution."
         />
-        <ProcessTimeline />
+        <Suspense fallback={null}>
+          <ProcessTimeline />
+        </Suspense>
       </Section>
 
       <Section>
@@ -185,39 +177,25 @@ function Home() {
           title="Built With Modern Technology"
           description="Protocols, platforms and frameworks Genbytez engineers work with across the stack."
         />
-        <TechnologyGrid />
+        <Suspense fallback={null}>
+          <TechnologyGrid />
+        </Suspense>
       </Section>
 
-      <Section className="border-t border-border bg-surface/30">
+      <Section>
         <SectionHeader
           eyebrow="Testimonials"
           title="Trusted by Teams Building What's Next"
           align="center"
         />
-        <TestimonialCarousel />
+        <Suspense fallback={null}>
+          <TestimonialCarousel />
+        </Suspense>
       </Section>
 
-      <Section light>
-        <SectionHeader
-          eyebrow="Insights"
-          title="Insights From the Connected World"
-          description="Perspectives on IoT, industrial data, analytics and digital transformation."
-        />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {insights.slice(0, 3).map((post, i) => (
-            <Reveal key={post.slug} delay={i * 90}>
-              <BlogCard {...post} />
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={140}>
-          <Link to="/insights" className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-primary">
-            Read all insights <ArrowRight className="size-4" />
-          </Link>
-        </Reveal>
-      </Section>
-
-      <CTASection />
+      <Suspense fallback={null}>
+        <CTASection />
+      </Suspense>
     </>
   );
 }

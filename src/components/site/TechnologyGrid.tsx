@@ -8,12 +8,14 @@ export function TechnologyGrid() {
         {technologies.map((group, i) => (
           <Reveal key={group.category} delay={i * 80}>
             <div className="card-surface h-full p-7">
-              <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-primary">{group.category}</h3>
+              <h3 className="inline-flex rounded-md border border-primary/20 bg-primary/10 px-2.5 py-1 font-mono text-xs uppercase tracking-[0.2em] text-primary/90">
+                {group.category}
+              </h3>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-sm text-muted-foreground"
+                    className="rounded-lg border border-primary/20 bg-primary/10 px-3 py-1.5 text-sm font-medium text-foreground/85 transition-colors hover:border-primary/35 hover:bg-primary/15 hover:text-foreground"
                   >
                     {item}
                   </li>
@@ -23,9 +25,6 @@ export function TechnologyGrid() {
           </Reveal>
         ))}
       </div>
-      <p className="mt-8 text-center text-xs text-muted-foreground">
-        Technologies Genbytez works with. Listing does not imply official partnership or endorsement.
-      </p>
     </>
   );
 }

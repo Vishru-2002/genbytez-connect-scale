@@ -1,5 +1,3 @@
-import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import type { Solution } from "@/content/site";
 import { Icon } from "./Icon";
 
@@ -16,20 +14,12 @@ export function SolutionCard({ solution }: { solution: Solution }) {
         {solution.useCases.slice(0, 4).map((u) => (
           <li
             key={u}
-            className="rounded-full border border-border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted-foreground"
+            className="rounded-full border border-primary/25 bg-primary/5 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted-foreground"
           >
             {u}
           </li>
         ))}
       </ul>
-      <Link
-        to="/solutions/$slug"
-        params={{ slug: solution.slug }}
-        className="mt-auto inline-flex items-center gap-1.5 pt-7 text-sm font-medium text-primary"
-      >
-        Explore Solution
-        <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </Link>
     </article>
   );
 }

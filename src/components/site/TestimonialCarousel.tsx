@@ -57,9 +57,6 @@ export function TestimonialCarousel() {
           </div>
         </div>
       </div>
-      <p className="mt-5 text-center font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
-        Sample content — replace with approved client quotes
-      </p>
     </div>
   );
 }

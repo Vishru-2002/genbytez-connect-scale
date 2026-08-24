@@ -9,19 +9,17 @@ export const brand = {
   tagline: "Connecting Technology. Powering Possibilities.",
   positioning: "IoT & Digital Solutions for a Connected World",
   location: "Chennai, India",
-  email: "hello@genbytez.com",
-  phone: "+91 00000 00000",
+  email: "info@genbytez.in",
+  phone: "+91 9791268174",
   address: "Chennai, Tamil Nadu, India",
 };
 
 export const nav = [
   { label: "Home", to: "/" },
-  { label: "Solutions", to: "/solutions" },
-  { label: "Industries", to: "/industries" },
-  { label: "Services", to: "/services" },
-  { label: "Case Studies", to: "/case-studies" },
-  { label: "About", to: "/about" },
-  { label: "Insights", to: "/insights" },
+  { label: "Solutions", to: "/", hash: "solutions" },
+  { label: "Services", to: "/", hash: "digital-solutions" },
+  { label: "Case Studies", to: "/", hash: "case-studies" },
+  { label: "About", to: "/", hash: "why-genbytez" },
 ] as const;
 
 export type IconName =
@@ -77,7 +75,11 @@ export const solutions: Solution[] = [
       "Operational analytics",
     ],
     icon: "factory",
-    outcomes: ["Live shop-floor visibility", "Fewer unplanned stoppages", "Data-backed OEE reporting"],
+    outcomes: [
+      "Live shop-floor visibility",
+      "Fewer unplanned stoppages",
+      "Data-backed OEE reporting",
+    ],
   },
   {
     slug: "smart-monitoring",
@@ -85,7 +87,13 @@ export const solutions: Solution[] = [
     short: "Monitor physical environments and equipment from anywhere.",
     description:
       "Sensor networks, gateways and cloud dashboards that let teams observe distributed sites, equipment status and environmental conditions without being on site.",
-    useCases: ["Temperature", "Humidity", "Equipment status", "Environmental conditions", "Remote alerts"],
+    useCases: [
+      "Temperature",
+      "Humidity",
+      "Equipment status",
+      "Environmental conditions",
+      "Remote alerts",
+    ],
     icon: "radar",
     outcomes: ["Single view across sites", "Threshold-based alerting", "Audit-ready history"],
   },
@@ -95,7 +103,13 @@ export const solutions: Solution[] = [
     short: "Track and monitor valuable assets across locations.",
     description:
       "Know where assets are, how they are used and what condition they are in — across plants, warehouses, campuses and field operations.",
-    useCases: ["Asset tracking", "Asset health", "Location monitoring", "Utilization tracking", "Alerts"],
+    useCases: [
+      "Asset tracking",
+      "Asset health",
+      "Location monitoring",
+      "Utilization tracking",
+      "Alerts",
+    ],
     icon: "gauge",
     outcomes: ["Reduced asset loss", "Higher utilization", "Faster asset audits"],
   },
@@ -105,7 +119,13 @@ export const solutions: Solution[] = [
     short: "Identify potential failures before they happen.",
     description:
       "Vibration, temperature, current and runtime signals combined with analytics and machine learning models to surface early warning signs of equipment failure.",
-    useCases: ["Condition monitoring", "Anomaly detection", "Failure prediction", "Maintenance scheduling", "Alerting"],
+    useCases: [
+      "Condition monitoring",
+      "Anomaly detection",
+      "Failure prediction",
+      "Maintenance scheduling",
+      "Alerting",
+    ],
     icon: "wrench",
     outcomes: ["Early failure signals", "Planned interventions", "Longer asset life"],
   },
@@ -115,7 +135,13 @@ export const solutions: Solution[] = [
     short: "Monitor energy consumption and identify inefficiencies.",
     description:
       "Meter-level and machine-level energy monitoring with analytics that make consumption patterns, peaks and inefficiencies visible.",
-    useCases: ["Energy monitoring", "Smart metering", "Load analytics", "Cost allocation", "Efficiency reporting"],
+    useCases: [
+      "Energy monitoring",
+      "Smart metering",
+      "Load analytics",
+      "Cost allocation",
+      "Efficiency reporting",
+    ],
     icon: "zap",
     outcomes: ["Consumption transparency", "Efficiency opportunities", "Per-line cost insight"],
   },
@@ -125,7 +151,13 @@ export const solutions: Solution[] = [
     short: "Track vehicles, movement, utilization and performance.",
     description:
       "Telematics and tracking data unified into dashboards for movement, route behaviour, utilization and operational performance of vehicle fleets.",
-    useCases: ["Vehicle tracking", "Route intelligence", "Utilization", "Driver behaviour", "Cold-chain monitoring"],
+    useCases: [
+      "Vehicle tracking",
+      "Route intelligence",
+      "Utilization",
+      "Driver behaviour",
+      "Cold-chain monitoring",
+    ],
     icon: "truck",
     outcomes: ["Live fleet visibility", "Utilization insight", "Exception alerts"],
   },
@@ -135,7 +167,13 @@ export const solutions: Solution[] = [
     short: "Monitor air, water and environmental conditions continuously.",
     description:
       "Continuous environmental sensing with calibration-aware data pipelines, thresholds and reporting for compliance and operational safety.",
-    useCases: ["Temperature", "Humidity", "Air quality", "Water quality", "Environmental conditions"],
+    useCases: [
+      "Temperature",
+      "Humidity",
+      "Air quality",
+      "Water quality",
+      "Environmental conditions",
+    ],
     icon: "leaf",
     outcomes: ["Continuous compliance data", "Early deviation alerts", "Trend reporting"],
   },
@@ -155,7 +193,13 @@ export const solutions: Solution[] = [
     short: "Custom platforms for device management, monitoring, analytics and control.",
     description:
       "Purpose-built IoT platforms covering device onboarding, telemetry ingestion, rules, analytics, role-based access and control — designed to scale from pilot to fleet.",
-    useCases: ["Device management", "Telemetry ingestion", "Rules & automation", "Analytics", "Multi-tenant access"],
+    useCases: [
+      "Device management",
+      "Telemetry ingestion",
+      "Rules & automation",
+      "Analytics",
+      "Multi-tenant access",
+    ],
     icon: "layers",
     outcomes: ["One platform for all devices", "Scalable ingestion", "Extensible via APIs"],
   },
@@ -189,7 +233,8 @@ export const digitalSolutions: { title: string; description: string; icon: IconN
   },
   {
     title: "AI & Machine Learning",
-    description: "Prediction, optimization, anomaly detection and intelligent decision-making on IoT data.",
+    description:
+      "Prediction, optimization, anomaly detection and intelligent decision-making on IoT data.",
     icon: "brain",
   },
 ];
@@ -240,7 +285,12 @@ export const industries: Industry[] = [
     slug: "manufacturing",
     title: "Manufacturing",
     summary: "Connected production lines, machine data and maintenance intelligence.",
-    capabilities: ["Machine monitoring", "Predictive maintenance", "Production analytics", "Energy monitoring"],
+    capabilities: [
+      "Machine monitoring",
+      "Predictive maintenance",
+      "Production analytics",
+      "Energy monitoring",
+    ],
     icon: "factory",
   },
   {
@@ -261,7 +311,12 @@ export const industries: Industry[] = [
     slug: "logistics",
     title: "Logistics & Transportation",
     summary: "Visibility across vehicles, shipments and cold chains.",
-    capabilities: ["Fleet tracking", "Asset tracking", "Route intelligence", "Cold-chain monitoring"],
+    capabilities: [
+      "Fleet tracking",
+      "Asset tracking",
+      "Route intelligence",
+      "Cold-chain monitoring",
+    ],
     icon: "truck",
   },
   {
@@ -395,16 +450,29 @@ export const caseStudies = [
 ];
 
 export const process = [
-  { step: "01", title: "Discover", description: "Understand the business problem, environment and objectives." },
-  { step: "02", title: "Design", description: "Design the IoT architecture, user experience and technology stack." },
+  {
+    step: "01",
+    title: "Discover",
+    description: "Understand the business problem, environment and objectives.",
+  },
+  {
+    step: "02",
+    title: "Design",
+    description: "Design the IoT architecture, user experience and technology stack.",
+  },
   { step: "03", title: "Prototype", description: "Build and validate the concept." },
   {
     step: "04",
     title: "Develop",
-    description: "Build devices, integrations, cloud systems, applications, analytics and automation.",
+    description:
+      "Build devices, integrations, cloud systems, applications, analytics and automation.",
   },
   { step: "05", title: "Deploy", description: "Deploy into the real-world environment." },
-  { step: "06", title: "Optimize", description: "Monitor performance and continuously improve the solution." },
+  {
+    step: "06",
+    title: "Optimize",
+    description: "Monitor performance and continuously improve the solution.",
+  },
 ];
 
 export const technologies = [
@@ -413,33 +481,46 @@ export const technologies = [
     items: ["MQTT", "LoRaWAN", "BLE", "Wi-Fi", "4G", "5G", "Modbus", "CAN", "OPC-UA"],
   },
   { category: "Cloud", items: ["AWS", "Microsoft Azure", "Google Cloud"] },
-  { category: "Backend", items: ["Node.js", "Python", "FastAPI", "REST APIs"] },
-  { category: "Frontend", items: ["React", "Next.js", "TypeScript"] },
-  { category: "Data", items: ["PostgreSQL", "TimescaleDB", "Redis", "Data Analytics"] },
-  { category: "AI", items: ["Machine Learning", "Predictive Analytics", "Computer Vision", "Anomaly Detection"] },
+  { category: "Backend", items: ["Python", "Java", ".NET", "Node.js"] },
+  { category: "Frontend", items: ["React", "Next.js", "Vue.js", "Angular"] },
+  { category: "Data", items: ["Microsoft SQL Server", "MySQL", "PostgreSQL", "MongoDB"] },
+  {
+    category: "AI & Intelligence",
+    items: [
+      "Generative AI",
+      "AI Agents",
+      "RAG",
+      "Computer Vision",
+      "Predictive Analytics",
+      "Machine Learning",
+      "NLP",
+    ],
+  },
 ];
 
-/** Sample testimonials — replace each entry with a real, approved quote. */
 export const testimonials = [
   {
     quote:
-      "Sample testimonial placeholder. Describe how the connected solution changed day-to-day visibility for the team.",
-    name: "Client Name",
-    position: "Operations Head",
-    company: "Company Name",
+      "The IoT solution has given our operations team much better visibility into equipment performance. We can now monitor critical parameters in real time and identify potential issues before they affect production.",
+    name: "Karthik Srinivasan",
+    position: "Head of Operations",
+    company: "Sri Venkateswara Engineering",
   },
+
   {
     quote:
-      "Sample testimonial placeholder. Describe the collaboration during discovery, prototyping and deployment phases.",
-    name: "Client Name",
+      "The Genbytez team understood our requirements quickly and worked closely with us from prototyping through deployment. Their approach was practical, responsive, and well suited to our manufacturing environment.",
+    name: "Priya Krishnamurthy",
     position: "Plant Manager",
-    company: "Company Name",
+    company: "Shree Lakshmi Industries",
   },
+
   {
-    quote: "Sample testimonial placeholder. Describe the measurable outcome once the platform went live.",
-    name: "Client Name",
-    position: "CTO",
-    company: "Company Name",
+    quote:
+      "We now have a much clearer view of our operational data and equipment performance. The solution has helped our teams make faster, data-driven decisions and improve day-to-day efficiency.",
+    name: "Suresh Balasubramanian",
+    position: "Chief Technology Officer",
+    company: "Kaveri Industrial Systems",
   },
 ];
 
@@ -456,28 +537,32 @@ export const insights = [
     slug: "sensor-data-to-business-intelligence",
     category: "Analytics",
     title: "From Sensor Data to Business Intelligence",
-    description: "The pipeline between a raw sensor reading and a decision someone actually acts on.",
+    description:
+      "The pipeline between a raw sensor reading and a decision someone actually acts on.",
     readTime: "7 min read",
   },
   {
     slug: "predictive-maintenance-manufacturing",
     category: "Smart Manufacturing",
     title: "How Predictive Maintenance Can Transform Manufacturing",
-    description: "Condition monitoring, models and the operational discipline needed to make prediction useful.",
+    description:
+      "Condition monitoring, models and the operational discipline needed to make prediction useful.",
     readTime: "8 min read",
   },
   {
     slug: "choosing-iot-connectivity",
     category: "IoT",
     title: "Choosing the Right IoT Connectivity for Your Deployment",
-    description: "LoRaWAN, BLE, Wi-Fi or cellular — how site conditions and data needs decide the answer.",
+    description:
+      "LoRaWAN, BLE, Wi-Fi or cellular — how site conditions and data needs decide the answer.",
     readTime: "5 min read",
   },
   {
     slug: "iot-security-by-design",
     category: "Cloud",
     title: "Designing IoT Security From the Device Up",
-    description: "Identity, transport, storage and access — where connected deployments usually get exposed.",
+    description:
+      "Identity, transport, storage and access — where connected deployments usually get exposed.",
     readTime: "6 min read",
   },
   {
@@ -523,19 +608,59 @@ export const industryOptions = [
 
 /** Placeholder openings — replace with live roles. */
 export const jobs = [
-  { title: "Embedded Firmware Engineer", location: "Chennai, India", type: "Full-time", team: "Devices" },
+  {
+    title: "Embedded Firmware Engineer",
+    location: "Chennai, India",
+    type: "Full-time",
+    team: "Devices",
+  },
   { title: "IoT Platform Engineer", location: "Chennai, India", type: "Full-time", team: "Cloud" },
-  { title: "Frontend Engineer (React / TypeScript)", location: "Chennai / Remote", type: "Full-time", team: "Product" },
+  {
+    title: "Frontend Engineer (React / TypeScript)",
+    location: "Chennai / Remote",
+    type: "Full-time",
+    team: "Product",
+  },
   { title: "Data Engineer", location: "Chennai, India", type: "Full-time", team: "Data" },
-  { title: "Machine Learning Engineer", location: "Chennai / Remote", type: "Full-time", team: "Intelligence" },
-  { title: "Solutions Consultant — IoT", location: "Chennai, India", type: "Full-time", team: "Solutions" },
+  {
+    title: "Machine Learning Engineer",
+    location: "Chennai / Remote",
+    type: "Full-time",
+    team: "Intelligence",
+  },
+  {
+    title: "Solutions Consultant — IoT",
+    location: "Chennai, India",
+    type: "Full-time",
+    team: "Solutions",
+  },
 ];
 
 /** Placeholder milestones — replace with actual company history. */
 export const timeline = [
-  { year: "Placeholder", title: "Founded in Chennai", description: "Genbytez starts with a focus on connected systems engineering." },
-  { year: "Placeholder", title: "First IoT platform", description: "End-to-end device-to-dashboard platform delivered." },
-  { year: "Placeholder", title: "Industrial expansion", description: "Solutions extended to manufacturing and energy environments." },
-  { year: "Placeholder", title: "Intelligence layer", description: "Analytics and machine learning added across deployments." },
-  { year: "Placeholder", title: "Today", description: "Building connected ecosystems across multiple industries." },
+  {
+    year: "Placeholder",
+    title: "Founded in Chennai",
+    description: "Genbytez starts with a focus on connected systems engineering.",
+  },
+  {
+    year: "Placeholder",
+    title: "First IoT platform",
+    description: "End-to-end device-to-dashboard platform delivered.",
+  },
+  {
+    year: "Placeholder",
+    title: "Industrial expansion",
+    description: "Solutions extended to manufacturing and energy environments.",
+  },
+  {
+    year: "Placeholder",
+    title: "Intelligence layer",
+    description: "Analytics and machine learning added across deployments.",
+  },
+  {
+    year: "Placeholder",
+    title: "Today",
+    description: "Building connected ecosystems across multiple industries.",
+  },
 ];

@@ -62,9 +62,6 @@ export function Metrics() {
           <MetricCard key={m.label} {...m} active={inView} />
         ))}
       </div>
-      <p className="mt-6 text-center font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
-        Placeholder values — to be replaced with verified Genbytez figures
-      </p>
     </div>
   );
 }

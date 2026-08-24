@@ -1,24 +1,17 @@
 import { CheckCircle2, Loader2, AlertCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { industryOptions, solutionOptions } from "@/content/site";
 
 type Values = {
   name: string;
   email: string;
-  phone: string;
-  company: string;
-  industry: string;
-  solution: string;
+  subject: string;
   message: string;
 };
 
 const empty: Values = {
   name: "",
   email: "",
-  phone: "",
-  company: "",
-  industry: "",
-  solution: "",
+  subject: "",
   message: "",
 };
 
@@ -27,12 +20,11 @@ type Errors = Partial<Record<keyof Values, string>>;
 function validate(values: Values): Errors {
   const errors: Errors = {};
   if (values.name.trim().length < 2) errors.name = "Please enter your full name.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim())) errors.email = "Enter a valid work email address.";
-  if (values.phone.trim().replace(/[^\d]/g, "").length < 7) errors.phone = "Enter a reachable phone number.";
-  if (values.company.trim().length < 2) errors.company = "Please enter your company name.";
-  if (!values.industry) errors.industry = "Select an industry.";
-  if (!values.solution) errors.solution = "Select the solution you need.";
-  if (values.message.trim().length < 20) errors.message = "Please describe your project in at least 20 characters.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim()))
+    errors.email = "Enter a valid work email address.";
+  if (values.subject.trim().length < 3) errors.subject = "Please enter a subject.";
+  if (values.message.trim().length < 20)
+    errors.message = "Please describe your project in at least 20 characters.";
   return errors;
 }
 
@@ -46,7 +38,8 @@ const labelCls = "mb-2 block text-xs font-medium uppercase tracking-[0.12em] tex
  */
 async function submitLead(values: Values): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, 900));
-  if (typeof console !== "undefined") console.info("[Genbytez] lead captured (not yet sent):", values);
+  if (typeof console !== "undefined")
+    console.info("[Genbytez] lead captured (not yet sent):", values);
 }
 
 export function ContactForm() {
@@ -54,10 +47,11 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const set = (key: keyof Values) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setValues((v) => ({ ...v, [key]: event.target.value }));
-    setErrors((e) => ({ ...e, [key]: undefined }));
-  };
+  const set =
+    (key: keyof Values) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValues((v) => ({ ...v, [key]: event.target.value }));
+      setErrors((e) => ({ ...e, [key]: undefined }));
+    };
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -83,8 +77,8 @@ export function ContactForm() {
         <CheckCircle2 className="mx-auto size-12 text-primary" />
         <h3 className="mt-6 text-2xl font-semibold">Thanks — your message is with us.</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-          A Genbytez specialist will review your requirement and get back to you. If it's urgent, reach us directly at{" "}
-          <span className="text-foreground">hello@genbytez.com</span>.
+          A Genbytez specialist will review your requirement and get back to you. If it's urgent,
+          reach us directly at <span className="text-foreground">hello@genbytez.com</span>.
         </p>
         <button
           type="button"
@@ -148,88 +142,25 @@ export function ContactForm() {
             autoComplete="email"
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
-            placeholder="you@company.com"
+            placeholder="you@example.com"
           />
           {error("email")}
         </div>
-        <div>
-          <label className={labelCls} htmlFor="phone">
-            Phone Number
+        <div className="sm:col-span-2">
+          <label className={labelCls} htmlFor="subject">
+            Subject
           </label>
           <input
-            id="phone"
-            name="phone"
-            type="tel"
+            id="subject"
+            name="subject"
             className={field}
-            value={values.phone}
-            onChange={set("phone")}
-            autoComplete="tel"
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
-            placeholder="+91 00000 00000"
+            value={values.subject}
+            onChange={set("subject")}
+            aria-invalid={!!errors.subject}
+            aria-describedby={errors.subject ? "subject-error" : undefined}
+            placeholder="What should we help with?"
           />
-          {error("phone")}
-        </div>
-        <div>
-          <label className={labelCls} htmlFor="company">
-            Company
-          </label>
-          <input
-            id="company"
-            name="company"
-            className={field}
-            value={values.company}
-            onChange={set("company")}
-            autoComplete="organization"
-            aria-invalid={!!errors.company}
-            aria-describedby={errors.company ? "company-error" : undefined}
-            placeholder="Company name"
-          />
-          {error("company")}
-        </div>
-        <div>
-          <label className={labelCls} htmlFor="industry">
-            Industry
-          </label>
-          <select
-            id="industry"
-            name="industry"
-            className={field}
-            value={values.industry}
-            onChange={set("industry")}
-            aria-invalid={!!errors.industry}
-            aria-describedby={errors.industry ? "industry-error" : undefined}
-          >
-            <option value="">Select industry</option>
-            {industryOptions.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-          {error("industry")}
-        </div>
-        <div>
-          <label className={labelCls} htmlFor="solution">
-            Solution Needed
-          </label>
-          <select
-            id="solution"
-            name="solution"
-            className={field}
-            value={values.solution}
-            onChange={set("solution")}
-            aria-invalid={!!errors.solution}
-            aria-describedby={errors.solution ? "solution-error" : undefined}
-          >
-            <option value="">Select solution</option>
-            {solutionOptions.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-          {error("solution")}
+          {error("subject")}
         </div>
         <div className="sm:col-span-2">
           <label className={labelCls} htmlFor="message">
@@ -265,9 +196,6 @@ export function ContactForm() {
           </>
         )}
       </button>
-      <p className="mt-4 text-xs text-muted-foreground">
-        Submissions are validated in the browser. Connect a backend or email service to deliver them.
-      </p>
     </form>
   );
 }
