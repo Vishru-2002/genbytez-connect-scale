@@ -39,7 +39,7 @@ export function Hero() {
               <Link
                 to="/"
                 hash="solutions"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/60 px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 <Play className="size-4" /> Explore Solutions
               </Link>
