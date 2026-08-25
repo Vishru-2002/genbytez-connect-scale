@@ -32,14 +32,19 @@ const field =
   "w-full rounded-xl border border-input bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/25";
 const labelCls = "mb-2 block text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground";
 
-/**
- * Lead form. `submitLead` is intentionally a local stub — wire it to a real
- * backend or email service (server function / CRM webhook) when available.
- */
 async function submitLead(values: Values): Promise<void> {
-  await new Promise((resolve) => setTimeout(resolve, 900));
-  if (typeof console !== "undefined")
-    console.info("[Genbytez] lead captured (not yet sent):", values);
+  const response = await fetch("/contact.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(values),
+  });
+
+  if (!response.ok) {
+    throw new Error("Contact form submission failed.");
+  }
 }
 
 export function ContactForm() {
