@@ -41,8 +41,9 @@ async function submitLead(values: Values): Promise<void> {
     },
     body: JSON.stringify(values),
   });
+  const result = (await response.json().catch(() => null)) as { ok?: boolean } | null;
 
-  if (!response.ok) {
+  if (!response.ok || result?.ok !== true) {
     throw new Error("Contact form submission failed.");
   }
 }
@@ -83,7 +84,7 @@ export function ContactForm() {
         <h3 className="mt-6 text-2xl font-semibold">Thanks — your message is with us.</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
           A Genbytez specialist will review your requirement and get back to you. If it's urgent,
-          reach us directly at <span className="text-foreground">hello@genbytez.com</span>.
+          reach us directly at <span className="text-foreground">info@genbytez.in</span>.
         </p>
         <button
           type="button"
@@ -111,7 +112,7 @@ export function ContactForm() {
           className="mb-6 flex items-start gap-3 rounded-xl border border-destructive/40 bg-destructive/10 p-4 text-sm text-foreground"
         >
           <AlertCircle className="mt-0.5 size-4 text-destructive" />
-          Something went wrong sending your message. Please try again or email hello@genbytez.com.
+          Something went wrong sending your message. Please try again or email info@genbytez.in.
         </div>
       ) : null}
 

@@ -4,6 +4,16 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    proxy: {
+      "/contact.php": "http://localhost:8080",
+    },
+  },
+  preview: {
+    proxy: {
+      "/contact.php": "http://localhost:8080",
+    },
+  },
   resolve: {
     tsconfigPaths: true,
   },
